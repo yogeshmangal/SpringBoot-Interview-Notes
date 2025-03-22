@@ -46,3 +46,6 @@ public class AppConfig {
     }
 }
 ```
+
+**Note:**
+In Simple terms, a Bean is a Java class that is managed and recognized by the Spring IoC container. A normal Java class is not recognized by Spring on its own. We need to provide specific annotations (like @Component, @Service, @Repository, or @Configuration) to make it a bean, and then Spring can recognize and manage it.
