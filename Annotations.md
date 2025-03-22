@@ -11,3 +11,15 @@ Marks a Java class as a Spring-managed bean.
 
 **Note:**  
 If you’re creating a Java class in a Spring Boot project and none of the specialized annotations (`@RestController`, `@Service`, `@Repository`) are suitable for the purpose of that class, you can use **@Component** to mark it as a Spring-managed bean.
+
+### Example
+
+```
+@Component
+public class MyComponent {
+    public void doSomething() {
+        System.out.println("Doing something...");
+    }
+}
+```
+
