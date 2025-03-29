@@ -30,3 +30,55 @@ The `spring-boot-starter-security` dependency is used to add authentication and 
 - Adding `spring-boot-starter-security` in `pom.xml` secures all API endpoints by default.  
 - Uses **Basic Authentication** with a generated password (found in logs).  
 - Developers can override default security settings by defining a custom security configuration.  
+
+
+## 3. spring-boot-devtools
+The `spring-boot-devtools` dependency enhances the development experience by providing features like automatic restart, live reload, and disabling template caching.  
+
+### 🔹 What does it provide?  
+- **Automatic Restart:** Restarts the application when code changes are detected.  
+- **Live Reload:** Refreshes the browser when static resources change (requires LiveReload extension).  
+- **Disable Template Caching:** Ensures templates (Thymeleaf, FreeMarker, etc.) reflect changes without restart.  
+- **Remote Debugging Support:** Allows DevTools to work with remote applications.  
+
+### 🔹 How it works:  
+- Adding `spring-boot-devtools` in `pom.xml` enables automatic restart and live reload.  
+- It is **disabled in production** (automatically turned off in packaged JAR/WAR files).  
+- Works best in **IDE development mode** for fast iteration cycles.  
+
+
+## 4. spring-boot-starter-actuator 
+
+The `spring-boot-starter-actuator` dependency provides production-ready features like monitoring, metrics, health checks, and system information for a Spring Boot application.  
+
+### 🔹 **What does it provide?**  
+- **Health Checks:** Monitors the application's health (e.g., `/actuator/health`).  
+- **Metrics & Monitoring:** Provides insights into CPU usage, memory, and request statistics.  
+- **Environment Info:** Exposes application properties, beans, and configuration details.  
+- **Thread Dump & Heap Dump:** Helps in debugging performance issues.  
+- **Custom Endpoints:** Developers can create custom actuator endpoints.  
+
+### 🔹 **How it works?**  
+- Add `spring-boot-starter-actuator` in `pom.xml`.  
+- Enable/disable specific endpoints via `application.properties` or `.yml`.  
+- Use `/actuator` endpoints for monitoring and management.  
+
+### 🔹 **Important Notes:**  
+- The **prefix is always `/actuator`** for all endpoints.  
+- By default, only `/health` is exposed. To expose additional endpoints, configure them in `application.yml`:  
+  
+  ```yaml
+  management.endpoints.web.exposure.include = health,info
+  management.info.env.enabled=true
+  ```  
+  
+  Now, `/info` can be accessed via:  
+  
+  `http://127.0.0.1:8080/actuator/info`
+
+- To expose **all** actuator endpoints, use `*` in `application.yml`:  
+  
+  ```yaml
+  management.endpoints.web.exposure.include = "*"
+  ```  
+  This ensures that all endpoints, including `/info`, are fully accessible.
