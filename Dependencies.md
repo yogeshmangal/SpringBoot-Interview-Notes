@@ -28,8 +28,15 @@ The `spring-boot-starter-security` dependency is used to add authentication and 
 
 ### 🔹 How it works:  
 - Adding `spring-boot-starter-security` in `pom.xml` secures all API endpoints by default.  
-- Uses **Basic Authentication** with a generated password (found in logs).  
+- Uses **Basic Authentication** with username as `user` and a generated password (found in logs).
 - Developers can override default security settings by defining a custom security configuration.  
+
+### 🔹 **Important Notes:**  
+- We can also give our username and password. So for that in application.properties file:
+```yaml
+  spring.security.user.name: Yogesh
+  spring.security.user.password: test@4321
+  ```
 
 
 ## 3. spring-boot-devtools
