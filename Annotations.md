@@ -49,3 +49,48 @@ public class AppConfig {
 
 **Note:**
 In Simple terms, a Bean is a Java class that is managed and recognized by the Spring IoC container. A normal Java class is not recognized by Spring on its own. We need to provide specific annotations (like @Component, @Service, @Repository, or @Configuration) to make it a bean, and then Spring can recognize and manage it.
+
+
+## 3. @Value
+The `@Value` annotation injects values into fields from properties files, system environment variables, or default values.
+
+### 🔹 **Usage Examples**  
+
+#### **️ Injecting from `application.properties`**  
+**`application.properties`**  
+```properties
+app.name=Spring Boot Application
+```
+**Java Class**  
+```java
+@Value("${app.name}")
+private String appName;
+```
+✅ Injects `appName` with `Spring Boot Application`.
+
+---
+
+#### ** Setting Default Values**  
+```java
+@Value("${app.version:1.0}")
+private String appVersion;
+```
+✅ If `app.version` is missing, `appVersion` defaults to `1.0`.
+
+---
+
+#### ** Injecting System Environment Variables**  
+```java
+@Value("${JAVA_HOME}")
+private String javaHome;
+```
+✅ Injects system's `JAVA_HOME` path.
+
+---
+
+#### ** Using Spring Expression Language (SpEL)**  
+```java
+@Value("#{10 + 20}")
+private int sum;
+```
+✅ `sum` is assigned `30`.
