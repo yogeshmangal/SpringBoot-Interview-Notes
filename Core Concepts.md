@@ -45,5 +45,6 @@
 | **Blocking/Non-blocking** | **Blocking** (Synchronous) | **Non-blocking** (Asynchronous) |
 | **Performance** | Slower for high loads | Efficient for massive loads |
 | **Use Case** | Traditional REST APIs (Spring MVC) | Real-time, high-performance apps (Spring WebFlux) |
+| **Spring Boot Starter** | spring-boot-starter-web | spring-boot-starter-webflux |
 
 ---
