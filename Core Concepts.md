@@ -195,3 +195,101 @@ class Car {
 }
 ```
 
+---
+
+## **Bean Scopes in Spring**  
+In Spring, a **bean scope** defines the lifecycle and visibility of a bean within the Spring container. There are **five** types of bean scopes:
+
+---
+
+### **1️ Singleton (Default)**
+- **Only one instance** of the bean is created and shared across the entire application.
+- Even if you call `getBean()` multiple times, it returns the same instance.
+
+📌 **Example:**
+```java
+@Component
+public class MyBean {
+}
+```
+Since `@Component` registers the bean with default **singleton scope**, every time it's injected, the same instance is used.
+
+📌 **Usage:**  
+- When you need a **shared instance** for efficiency.  
+- Used for **stateless beans** like services.
+
+---
+
+### **2️ Prototype**
+- A **new instance is created** every time the bean is requested.
+- Different from Singleton, as each `getBean()` call returns a **new object**.
+
+📌 **Example:**
+```java
+@Component
+@Scope("prototype")
+public class MyBean {
+}
+```
+📌 **Usage:**  
+- When you need a **separate instance** every time (e.g., per request).  
+- Useful for **stateful beans**.
+
+---
+
+### **3️ Request (For Web Applications)**
+- A **new bean instance** is created for **each HTTP request**.
+- Available only in **Spring Web Applications**.
+
+📌 **Example:**
+```java
+@Component
+@Scope("request")
+public class MyRequestBean {
+}
+```
+📌 **Usage:**  
+- Useful when you want **request-specific data**, like a user's session.
+
+---
+
+### **4️ Session (For Web Applications)**
+- A **single bean instance** is created for a **user session**.
+- The bean exists as long as the HTTP session is active.
+
+📌 **Example:**
+```java
+@Component
+@Scope("session")
+public class MySessionBean {
+}
+```
+📌 **Usage:**  
+- Used when you need **user-specific data** throughout a session.
+
+---
+
+### **5️ Application (For Web Applications)**
+- A **single bean instance** is shared across the **entire application** (similar to Singleton).
+- Exists as long as the ServletContext exists.
+
+📌 **Example:**
+```java
+@Component
+@Scope("application")
+public class MyApplicationBean {
+}
+```
+📌 **Usage:**  
+- When you need **global data** across all sessions and requests.
+
+---
+
+### **Summary Table 📝**
+| Scope        | Instance Creation | Lifetime |
+|-------------|----------------|----------|
+| **Singleton (Default)** | One instance per Spring container | Throughout the application |
+| **Prototype** | New instance every time | Created & destroyed per request |
+| **Request** | One instance per HTTP request | Until request completes |
+| **Session** | One instance per HTTP session | Until session ends |
+| **Application** | One instance per web application | Until application stops |
