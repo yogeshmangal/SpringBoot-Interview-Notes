@@ -108,3 +108,96 @@ The `@Autowired` annotation in Spring is used for **automatic dependency injecti
 ✔ Works on **fields, constructors, and setter methods**.  
 ✔ If multiple beans exist, use `@Qualifier` or `@Primary` to specify which bean to inject.  
 ✔ **Constructor injection is preferred** as it ensures required dependencies and immutability.
+
+---
+
+## 5. @Qualifier
+When multiple beans of the same type exist, Spring doesn’t know which one to inject. `@Qualifier` helps specify the exact bean to use.  
+
+#### **📌 Example (Constructor Injection):**  
+```java
+@Component
+class PetrolEngine implements Engine { }
+
+@Component
+class DieselEngine implements Engine { }
+
+@Component
+class Car {
+    private Engine engine;
+
+    @Autowired
+    public Car(@Qualifier("petrolEngine") Engine engine) {  // "petrolEngine" (first letter lowercase)
+        this.engine = engine;
+    }
+}
+```
+🔹 **Key Points:**  
+- The bean name must match the class name with a lowercase first letter.
+- `@Qualifier("petrolEngine")` tells Spring to inject `PetrolEngine` instead of `DieselEngine`.  
+
+---
+
+## 6. @Primary
+If multiple beans exist and no `@Qualifier` is used, Spring injects the bean marked with `@Primary` by default.  
+
+#### **📌 Example:**  
+```java
+@Component
+@Primary  // Marks DieselEngine as the default bean
+class DieselEngine implements Engine { }
+
+@Component
+class PetrolEngine implements Engine { }
+
+@Component
+class Car {
+    private Engine engine;
+
+    @Autowired
+    public Car(Engine engine) {  // No @Qualifier used
+        this.engine = engine;
+    }
+}
+```
+🔹 **Key Points:**  
+- `@Primary` removes the need for `@Qualifier` unless we want to override it.
+- If both `@Primary` and `@Qualifier` are used, **`@Qualifier` takes precedence**.  
+
+---
+
+## 7. @Lazy
+By default, Spring creates all beans at startup. `@Lazy` prevents this, delaying bean creation until it's actually needed.  
+
+#### **📌 Example:**  
+```java
+@Component
+@Lazy  // This bean will not be created at startup
+class HeavyDatabaseConnection {
+    public HeavyDatabaseConnection() {
+        System.out.println("Database Connection Initialized!");
+    }
+}
+
+@Component
+class Application {
+    private HeavyDatabaseConnection dbConnection;
+
+    @Autowired
+    public Application(HeavyDatabaseConnection dbConnection) {
+        this.dbConnection = dbConnection;
+    }
+}
+```
+🔹 **Key Points:**  
+- Without `@Lazy`, the `HeavyDatabaseConnection` instance is created at startup.
+- With `@Lazy`, it is only created when `Application` accesses it for the first time.  
+
+---
+
+### **Summary:**  
+- **`@Qualifier`** → Specifies which bean to inject when multiple exist
+- **`@Primary`** → Sets a default bean, avoiding the need for `@Qualifier` everywhere.
+- **`@Lazy`** → Delays bean creation until it's actually needed.  
+
+---
