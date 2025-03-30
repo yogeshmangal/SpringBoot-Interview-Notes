@@ -201,3 +201,61 @@ class Application {
 - **`@Lazy`** → Delays bean creation until it's actually needed.  
 
 ---
+
+## **@PostConstruct & @PreDestroy Annotations**  
+
+In Spring, `@PostConstruct` and `@PreDestroy` annotations are used for lifecycle callback methods, allowing developers to define custom initialization and cleanup logic for beans.  
+
+## 8. @PostConstruct(Initialization Method)  
+- Runs **after the bean is created and dependencies are injected**.  
+- Used to perform setup operations (e.g., initializing resources).  
+- It is invoked **only once**, after dependency injection.  
+
+📌 **Example:**  
+```java
+@Component
+public class MyBean {
+    @PostConstruct
+    public void init() {
+        System.out.println("Bean is initialized!");
+    }
+}
+```
+**Output when bean is created:**  
+```
+Bean is initialized!
+```
+
+## 9. @PreDestroy Cleanup Method)  
+- Runs **just before the bean is destroyed**.  
+- Used to release resources, close connections, etc.  
+- It is **not invoked for prototype beans**, as Spring doesn’t manage their lifecycle fully.  
+
+📌 **Example:**  
+```java
+@Component
+public class MyBean {
+    @PreDestroy
+    public void cleanup() {
+        System.out.println("Bean is about to be destroyed!");
+    }
+}
+```
+**Output when application shuts down:**  
+```
+Bean is about to be destroyed!
+```
+
+### 🔹 **Important Notes:**  
+- These annotations work **only with Spring-managed beans**.  
+- `@PostConstruct` runs **only once**, even for singleton beans.  
+- `@PreDestroy` is ignored for **prototype beans** since Spring does not manage their complete lifecycle.  
+- Alternative: Instead of these annotations, you can define lifecycle methods using `initMethod` and `destroyMethod` in `@Bean` annotation.  
+**Prototype beans are lazy by default**.  
+
+📌 **Example using @Bean:**  
+```java
+@Bean(initMethod = "init", destroyMethod = "cleanup")
+public MyBean myBean() {
+    return new MyBean();
+}
