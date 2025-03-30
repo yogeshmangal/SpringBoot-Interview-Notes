@@ -137,7 +137,7 @@ class Car {
 Now, `Car` doesn’t create an `Engine`, it just receives it from the outside.  
 
 ### **🔹 Types of Dependency Injection:**  
-#### **1️ Constructor Injection (Recommended)**  
+#### **1️. Constructor Injection (Recommended)**  
 - Injects dependencies via constructor  
 - Ensures immutability  
 - Example:  
@@ -175,7 +175,7 @@ class Car {
 ```
 
 ## **Autowiring**  
-Autowiring is a feature in Spring that automatically injects dependencies without explicitly creating objects. It helps in reducing boilerplate code.  
+Autowiring is a feature in Spring that automatically injects dependencies without explicitly creating objects. It helps in reducing boilerplate code. In short, Autowiring is a way to achieve Dependency Injection in Spring.
 
 ### **🔹 Types of Autowiring in Spring:**  
 - **`@Autowired` (Default)** → Automatically injects dependencies  

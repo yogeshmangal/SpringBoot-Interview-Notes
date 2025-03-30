@@ -94,3 +94,17 @@ private String javaHome;
 private int sum;
 ```
 ✅ `sum` is assigned `30`.
+
+
+## 4. @Autowired
+The `@Autowired` annotation in Spring is used for **automatic dependency injection**. It tells Spring to resolve and inject the required bean **automatically**, reducing the need for manual object creation.  
+
+### **📌 How it Works?**  
+- When `@Autowired` is placed on a **field, constructor, or setter**, Spring looks for a matching bean and injects it.  
+- It works with **Spring's IoC (Inversion of Control) container** to manage dependencies.  
+
+### **🔹 Key Points:**  
+✔ `@Autowired` enables automatic dependency resolution.  
+✔ Works on **fields, constructors, and setter methods**.  
+✔ If multiple beans exist, use `@Qualifier` or `@Primary` to specify which bean to inject.  
+✔ **Constructor injection is preferred** as it ensures required dependencies and immutability.
