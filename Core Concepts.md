@@ -223,7 +223,7 @@ Since `@Component` registers the bean with default **singleton scope**, every ti
 ### **2️ Prototype**
 - A **new instance is created** every time the bean is requested.
 - Different from Singleton, as each `getBean()` call returns a **new object**.
-- Prototype beans are lazy by default. So we dont' need to mention @lazy annotation.
+- Prototype beans are lazy by default. So we dont' need to mention @Lazy annotation.
 
 📌 **Example:**
 ```java
