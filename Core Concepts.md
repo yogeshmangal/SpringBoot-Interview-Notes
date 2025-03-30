@@ -149,7 +149,7 @@ class Car {
 }
 ```
 
-#### **2️ Setter Injection**  
+#### **2️. Setter Injection**  
 - Injects dependencies via setter methods  
 - Example:  
 ```java
@@ -157,11 +157,13 @@ class Car {
 class Car {
     private Engine engine;
     @Autowired
-    public void setEngine(Engine engine) { this.engine = engine; }
+    public void setEngine(Engine engine) { 
+		this.engine = engine; 
+	}
 }
 ```
 
-#### **3️ Field Injection (Less recommended)**  
+#### **3️. Field Injection (Less recommended)**  
 - Injects dependencies directly into fields  
 - Example:  
 ```java
@@ -172,7 +174,7 @@ class Car {
 }
 ```
 
-## **3. Autowiring**  
+## **Autowiring**  
 Autowiring is a feature in Spring that automatically injects dependencies without explicitly creating objects. It helps in reducing boilerplate code.  
 
 ### **🔹 Types of Autowiring in Spring:**  
