@@ -97,3 +97,99 @@ logging.level.org.springframework=WARN  # Suppresses INFO and DEBUG logs for Spr
 ❌ `DEBUG` and `TRACE` logs will be **ignored** unless enabled in `application.properties`.  
 
 ---
+
+## **1. Inversion of Control (IoC)**  
+Inversion of Control (IoC) is a design principle where the control of object creation and dependency management is given to a framework (like Spring) instead of being handled manually by the developer.  
+
+### **📌 Example:**  
+**Without IoC:**  
+```java
+Car car = new Car();
+```
+
+**With IoC (using Spring):**  
+```java
+@Autowired
+Car car;  // Spring automatically provides an instance
+```
+
+## **2. Dependency Injection (DI)**  
+Dependency Injection is a way of implementing IoC where dependencies (objects needed by a class) are provided from outside rather than being created inside the class itself.  
+
+### **📌 Example: Without DI**  
+```java
+class Car {
+    Engine engine = new Engine();  // Tight coupling
+}
+```
+
+### **📌 With DI:**  
+```java
+class Car {
+    private Engine engine;
+
+    // Injecting dependency via constructor
+    public Car(Engine engine) { 
+        this.engine = engine;
+    }
+}
+```
+Now, `Car` doesn’t create an `Engine`, it just receives it from the outside.  
+
+### **🔹 Types of Dependency Injection:**  
+#### **1️ Constructor Injection (Recommended)**  
+- Injects dependencies via constructor  
+- Ensures immutability  
+- Example:  
+```java
+@Component
+class Car {
+    private Engine engine;
+    public Car(Engine engine) { this.engine = engine; }
+}
+```
+
+#### **2️ Setter Injection**  
+- Injects dependencies via setter methods  
+- Example:  
+```java
+@Component
+class Car {
+    private Engine engine;
+    @Autowired
+    public void setEngine(Engine engine) { this.engine = engine; }
+}
+```
+
+#### **3️ Field Injection (Less recommended)**  
+- Injects dependencies directly into fields  
+- Example:  
+```java
+@Component
+class Car {
+    @Autowired
+    private Engine engine;
+}
+```
+
+## **3. Autowiring**  
+Autowiring is a feature in Spring that automatically injects dependencies without explicitly creating objects. It helps in reducing boilerplate code.  
+
+### **🔹 Types of Autowiring in Spring:**  
+- **`@Autowired` (Default)** → Automatically injects dependencies  
+- **`@Qualifier("beanName")`** → Used when multiple beans exist  
+- **`@Primary`** → Gives higher preference to a specific bean  
+- **`@Lazy`** → Initializes bean only when needed  
+
+### **📌 Example:**  
+```java
+@Component
+class Engine { }
+
+@Component
+class Car {
+    @Autowired
+    private Engine engine;  // Spring automatically injects Engine instance
+}
+```
+
