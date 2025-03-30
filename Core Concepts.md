@@ -98,7 +98,7 @@ logging.level.org.springframework=WARN  # Suppresses INFO and DEBUG logs for Spr
 
 ---
 
-## **1. Inversion of Control (IoC)**  
+## ** Inversion of Control (IoC)**  
 Inversion of Control (IoC) is a design principle where the control of object creation and dependency management is given to a framework (like Spring) instead of being handled manually by the developer.  
 
 ### **📌 Example:**  
@@ -113,7 +113,7 @@ Car car = new Car();
 Car car;  // Spring automatically provides an instance
 ```
 
-## **2. Dependency Injection (DI)**  
+## **Dependency Injection (DI)**  
 Dependency Injection is a way of implementing IoC where dependencies (objects needed by a class) are provided from outside rather than being created inside the class itself.  
 
 ### **📌 Example: Without DI**  
