@@ -297,42 +297,37 @@ public class MyApplicationBean {
 
 ---
 
-## **JPA and its Relation with Hibernate**
+## **JPA vs Hibernate**
 
-### 🔹 **What is JPA?**
-**JPA (Java Persistence API)** is a **specification** provided by Java to manage relational data in Java applications.
-- It provides a standard way to map Java objects to database tables (ORM - Object Relational Mapping).
+### 🔹 What is JPA?
+- **JPA (Java Persistence API)** is a **specification** provided by Java to define how Java objects should be persisted into a relational database.
+- JPA defines interfaces and annotations but **does not provide any implementation**.
+- It's a set of **rules and guidelines** for ORM (Object Relational Mapping).
 - It includes annotations like `@Entity`, `@Id`, `@Column`, etc.
-- **Note:** JPA itself is not an implementation — it's just an API.
 
----
+### 🔹 What is Hibernate?
+- **Hibernate** is a popular **implementation** of the JPA specification.
+- It provides the actual functionality for saving, updating, deleting, and retrieving objects from the database.
+- Hibernate automatically generates SQL queries based on entity definitions and manages the interaction with the DB.
+- In short, Hibernate is the implementation of those JPA rules. It handles the low-level work like generating SQL queries, managing database connections, caching, etc.
 
-### 🔹 **What is Hibernate?**
-**Hibernate** is one of the most popular **implementations** of the JPA specification.
-- It provides the actual logic to persist Java objects to a relational database.
-- When you use JPA annotations in your code, Hibernate works behind the scenes to handle database operations.
+### 🔹 How do they work together?
+- You write your code using **JPA annotations and interfaces**.
+- Under the hood, **Hibernate** handles the actual database interaction.
 
----
-
-### 🔹 **JPA + Hibernate: How it works?**
-You write code using JPA annotations, and Hibernate performs the ORM tasks internally.
-
-#### 📌 Example:
+### 🔹 Example:
 ```java
-@Entity
-public class Car {
-    @Id
-    private Long id;
-
-    @Column
-    private String model;
+// JPA in action
+public interface StudentRepo extends JpaRepository<Student, Integer> {
+    // No implementation needed
 }
 ```
-This is pure **JPA** code. But when Hibernate is present in your dependencies (like in Spring Boot), it acts as the JPA **provider** to execute the required persistence logic.
+Here,
+- `JpaRepository` is part of **JPA**.
+- Spring Boot internally uses **Hibernate** to implement this repository.
 
----
+### ✅ Summary:
+- **JPA** = What to do (rules + annotations)
+- **Hibernate** = How to do (actual implementation)
 
-### ✅ Summary
-- **JPA** = Specification
-- **Hibernate** = Implementation of JPA
-- Use JPA to write clean and standard code, and let Hibernate handle the heavy lifting!
+> You use **JPA to write clean, framework-independent code**, and let **Hibernate handle the heavy lifting** behind the scenes.
