@@ -251,7 +251,6 @@ Bean is about to be destroyed!
 - `@PostConstruct` runs **only once**, even for singleton beans.  
 - `@PreDestroy` is ignored for **prototype beans** since Spring does not manage their complete lifecycle.  
 - Alternative: Instead of these annotations, you can define lifecycle methods using `initMethod` and `destroyMethod` in `@Bean` annotation.  
-**Prototype beans are lazy by default**.  
 
 📌 **Example using @Bean:**  
 ```java

@@ -294,3 +294,45 @@ public class MyApplicationBean {
 | **Request** | One instance per HTTP request | Until request completes |
 | **Session** | One instance per HTTP session | Until session ends |
 | **Application** | One instance per web application | Until application stops |
+
+---
+
+## **JPA and its Relation with Hibernate**
+
+### 🔹 **What is JPA?**
+**JPA (Java Persistence API)** is a **specification** provided by Java to manage relational data in Java applications.
+- It provides a standard way to map Java objects to database tables (ORM - Object Relational Mapping).
+- It includes annotations like `@Entity`, `@Id`, `@Column`, etc.
+- **Note:** JPA itself is not an implementation — it's just an API.
+
+---
+
+### 🔹 **What is Hibernate?**
+**Hibernate** is one of the most popular **implementations** of the JPA specification.
+- It provides the actual logic to persist Java objects to a relational database.
+- When you use JPA annotations in your code, Hibernate works behind the scenes to handle database operations.
+
+---
+
+### 🔹 **JPA + Hibernate: How it works?**
+You write code using JPA annotations, and Hibernate performs the ORM tasks internally.
+
+#### 📌 Example:
+```java
+@Entity
+public class Car {
+    @Id
+    private Long id;
+
+    @Column
+    private String model;
+}
+```
+This is pure **JPA** code. But when Hibernate is present in your dependencies (like in Spring Boot), it acts as the JPA **provider** to execute the required persistence logic.
+
+---
+
+### ✅ Summary
+- **JPA** = Specification
+- **Hibernate** = Implementation of JPA
+- Use JPA to write clean and standard code, and let Hibernate handle the heavy lifting!
