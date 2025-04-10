@@ -105,14 +105,14 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
 }
 ```
 
-✅ Clean, minimal, and faster.
-✅ Spring generates the implementation behind the scenes using proxies + Hibernate.
-✅ You can even define custom queries using method names or @Query.
+- ✅ Clean, minimal, and faster.
+- ✅ Spring generates the implementation behind the scenes using proxies + Hibernate.
+- ✅ You can even define custom queries using method names or @Query.
 
 So the conclusion is:
 
-✅ Use DAO + EntityManager if you want fine-grained control over the persistence layer.
-🚀 Use Spring Data JPA for faster development and access to powerful built-in repository methods.
+- ✅ Use DAO + EntityManager if you want fine-grained control over the persistence layer.
+- 🚀 Use Spring Data JPA for faster development and access to powerful built-in repository methods.
 
 ---
 
