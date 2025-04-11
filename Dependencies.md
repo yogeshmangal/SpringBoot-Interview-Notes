@@ -114,9 +114,9 @@ Lightweight, in-memory database for testing and rapid development.
 </dependency>
 ```
 ✅ If you use H2, you don’t need to install/configure any external database like MySQL or PostgreSQL. It works straight out of the box — no setup hustle.
-- **🧪 It’s mainly used for:**
-✅ Quick testing
-✅ Learning
-✅ Small-scale internal demos
-✅ Running integration tests
+### **🧪 It’s mainly used for:**
+- Quick testing
+- Learning
+- Small-scale internal demos
+- Running integration tests
 📉 But since everything is stored in memory, the data vanishes as soon as the app stops (unless you use file-based mode).
