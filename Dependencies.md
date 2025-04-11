@@ -89,3 +89,34 @@ The `spring-boot-starter-actuator` dependency provides production-ready features
   management.endpoints.web.exposure.include = "*"
   ```  
   This ensures that all endpoints, including `/info`, are fully accessible.
+
+## 5. spring-boot-starter-data-jpa
+Provides all the necessary components to use Spring Data JPA with Hibernate as the default ORM provider.
+**Includes:**  
+- Hibernate
+- Spring ORM
+- JPA Annotations (`@Entity`, `@Id`, `@GeneratedValue`, etc.)
+- Repository support (`JpaRepository`, `CrudRepository`, etc.)
+
+**Use Case:**  
+Use this to interact with relational databases using JPA and repositories.
+
+## 6. postgresql
+JDBC driver for PostgreSQL. Required to connect your Spring Boot app to a PostgreSQL database.
+
+## 7. h2
+Lightweight, in-memory database for testing and rapid development.
+```
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+</dependency>
+```
+- ✅ If you use H2, you don’t need to install/configure any external database like MySQL or PostgreSQL. It works straight out of the box — no setup hustle.
+**🧪 It’s mainly used for:**
+- Quick testing
+- Learning
+- Small-scale internal demos
+- Running integration tests
+- 📉 But since everything is stored in memory, the data vanishes as soon as the app stops (unless you use file-based mode).

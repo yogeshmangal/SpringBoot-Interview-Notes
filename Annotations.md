@@ -261,6 +261,7 @@ public MyBean myBean() {
 ```
 ---
 
+##JPA & Spring Data Annotations
 
 ## 10. @Query
 `@Query` is used in Spring Data JPA to define custom queries using JPQL or native SQL.
@@ -359,3 +360,6 @@ Used to map Java fields to database columns.
 private String firstName;
 ```
 
+- **Note:** To use all the annotations we’ve discussed so far (@Entity, @Table, @Id, @GeneratedValue, @Query, @Modifying, @Transactional), you'll mainly need Spring Data JPA and a database driver (MySql or PostgreSql). 
+
+---
