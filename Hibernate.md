@@ -142,3 +142,50 @@ public StudentDAOImpl(EntityManager theEntityManager) {
 ```
 
 ---
+
+## Writing Custom Queries in Spring Data JPA
+Spring Data JPA allows us to write custom queries in two main ways:
+
+### 1. Using JPQL or Native SQL with **@Query** Annotation
+You can write your own queries using the @Query annotation above the method in your repository interface.
+
+📌 **Example: JPQL Query**
+
+```java
+public interface StudentRepository extends JpaRepository<Student, Integer> {
+
+    @Query("SELECT s FROM Student s WHERE s.lastName = ?1")
+    List<Student> findByLastName(String lastName);
+}
+```
+✅ Here, ?1 refers to the first method parameter.
+
+
+📌 **Example: Native SQL Query**
+```java
+public interface StudentRepository extends JpaRepository<Student, Integer> {
+
+    @Query(value = "SELECT * FROM student WHERE last_name = ?1", nativeQuery = true)
+    List<Student> findByLastNameNative(String lastName);
+}
+```
+✅ You just set nativeQuery = true to write actual SQL.
+
+**Note:** JPQL queries are written in a database-independent manner, focusing on the entities while native queries use pure SQL and are written with database-specific syntax.
+
+### 2. Derived Query Methods (No Query Annotation Needed)
+Spring Data JPA can also generate queries automatically based on method names.
+```java
+List<Student> findByFirstName(String firstName);
+```
+💡 This automatically generates:
+```
+SELECT * FROM student WHERE first_name = ?
+```
+
+### 🔥 Bonus: Parameters with Named Variables
+```
+@Query("SELECT s FROM Student s WHERE s.email = :email")
+Student findByEmail(@Param("email") String email);
+```
+✅ More readable and flexible when you have multiple parameters.
