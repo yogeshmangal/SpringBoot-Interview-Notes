@@ -258,3 +258,104 @@ Bean is about to be destroyed!
 public MyBean myBean() {
     return new MyBean();
 }
+```
+---
+
+
+## 10. @Query
+`@Query` is used in Spring Data JPA to define custom queries using JPQL or native SQL.
+
+### Example:
+```java
+@Query("SELECT s FROM Student s WHERE s.lastName = ?1")
+List<Student> findByLastName(String lastName);
+
+@Query(value = "SELECT * FROM student WHERE last_name = ?1", nativeQuery = true)
+List<Student> findByLastNameNative(String lastName);
+```
+
+## 11. @Modifying
+`@Modifying` is used to indicate that the custom query modifies data (UPDATE, DELETE).
+
+### Example:
+```java
+@Modifying
+@Query("DELETE FROM Student s WHERE s.lastName = ?1")
+void deleteByLastName(String lastName);
+```
+
+> ⚠️ Must be used with `@Transactional`
+
+## 12. @Transactional
+`@Transactional` marks a method or class to be executed within a transaction. Ensures commit or rollback happens automatically.
+
+### Example:
+```java
+@Transactional
+@Modifying
+@Query("UPDATE Student s SET s.email = ?2 WHERE s.id = ?1")
+void updateEmailById(Integer id, String email);
+```
+
+## 13. @Entity
+Marks a class as a JPA entity.
+
+### Example:
+```java
+@Entity
+public class Student {
+    // fields and annotations
+}
+```
+
+## 14. @Table
+Defines table name if it's different from the class name.
+
+### Example:
+```java
+@Entity
+@Table(name = "students")
+public class Student {
+    // fields
+}
+```
+
+## 15. @Id
+Marks the primary key of the entity.
+
+### Example:
+```java
+@Id
+private int id;
+```
+
+## 16. @GeneratedValue
+Specifies how the primary key should be generated.
+
+### Strategies:
+- `AUTO`
+- `IDENTITY`
+- `SEQUENCE`
+- `TABLE`
+
+### Example:
+```java
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private int id;
+```
+
+## 17. @Column
+Used to map Java fields to database columns.
+
+### Options:
+- `name` - column name
+- `nullable` - whether the column is nullable
+- `length` - length of a String column
+
+### Example:
+```java
+@Column(name = "first_name", nullable = false, length = 50)
+private String firstName;
+```
+

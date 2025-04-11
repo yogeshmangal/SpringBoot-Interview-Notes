@@ -171,7 +171,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 ```
 ✅ You just set nativeQuery = true to write actual SQL.
 
-**Note:** JPQL queries are written in a database-independent manner, focusing on the entities while native queries use pure SQL and are written with database-specific syntax.
+**Note:** JPQL queries are written in a database-independent manner, focusing on the entities while Native queries use pure SQL and are written with database-specific syntax.
 
 ### 2. Derived Query Methods (No Query Annotation Needed)
 Spring Data JPA can also generate queries automatically based on method names.
