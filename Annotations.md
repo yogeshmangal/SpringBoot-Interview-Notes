@@ -275,7 +275,7 @@ List<Student> findByLastNameNative(String lastName);
 ```
 
 ## 11. @Modifying
-`@Modifying` is used to indicate that the custom query modifies data (UPDATE, DELETE).
+`@Modifying` used with @Query when executing update or delete operations (non-select queries). It tells Spring Data JPA that this query modifies the data.
 
 ### Example:
 ```java
