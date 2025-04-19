@@ -363,3 +363,79 @@ private String firstName;
 - **Note:** To use all the annotations we’ve discussed so far (@Entity, @Table, @Id, @GeneratedValue, @Query, @Modifying, @Transactional), you'll mainly need Spring Data JPA and a database driver (MySql or PostgreSql). 
 
 ---
+
+# Path Parameter vs Query Parameter in Spring Boot
+
+## 18. Path Parameter
+Path parameters are part of the **URL path** and are used to identify a specific resource.
+
+### ✅ Use Case:
+When you want to retrieve or operate on a specific resource by its ID or name.
+
+### 📌 Example:
+```java
+@GetMapping("/students/{id}")
+public Student getStudentById(@PathVariable int id) {
+    return studentService.findById(id);
+}
+```
+
+### 🛣️ Request URL:
+```
+GET /students/10
+```
+In this case, `10` is the path parameter.
+
+---
+
+## 19. Query Parameter
+Query parameters are passed **after the `?` in the URL** and are usually used for filtering, sorting, or pagination.
+
+### ✅ Use Case:
+When you want to pass optional data to refine results.
+
+### 📌 Example:
+```java
+@GetMapping("/students")
+public List<Student> findByDepartment(@RequestParam String department) {
+    return studentService.findByDepartment(department);
+}
+```
+
+### 🔗 Request URL:
+```
+GET /students?department=ComputerScience
+```
+
+In this case, `department` is a query parameter.
+
+---
+
+## 20. Combining Both
+You can use both path and query parameters together in one endpoint.
+
+### 📌 Example:
+```java
+@GetMapping("/departments/{deptId}/students")
+public List<Student> getStudentsByDeptAndYear(@PathVariable int deptId,
+                                              @RequestParam int year) {
+    return studentService.findByDeptAndYear(deptId, year);
+}
+```
+
+### 🔗 Request:
+```
+GET /departments/3/students?year=2024
+```
+
+---
+
+## 📝 Summary Table
+| Feature         | Path Parameter              | Query Parameter                  |
+|-----------------|-----------------------------|-----------------------------------|
+| **Location**        | Part of the URL path        | After `?` in URL                 |
+| **Use**             | Identify resource            | Filter, sort, paginate           |
+| **Annotation**      | `@PathVariable`              | `@RequestParam`                 |
+| **Required**        | Always required              | Optional (can set `required=false`) |
+
+---
