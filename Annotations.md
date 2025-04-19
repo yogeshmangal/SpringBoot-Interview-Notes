@@ -360,7 +360,7 @@ Used to map Java fields to database columns.
 private String firstName;
 ```
 
-- **Note:** To use all the annotations we’ve discussed so far (@Entity, @Table, @Id, @GeneratedValue, @Query, @Modifying, @Transactional), you'll mainly need Spring Data JPA and a database driver (MySql or PostgreSql). 
+- **Note:** To use all the annotations we’ve discussed so far (@Entity, @Table, @Id, @GeneratedValue, @Query, @Modifying, @Transactional), you'll mainly need spring-boot-starter-data-jpa dependency and a database driver (MySql or PostgreSql) dependency. 
 
 ---
 
