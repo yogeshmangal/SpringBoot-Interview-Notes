@@ -436,6 +436,34 @@ GET /departments/3/students?year=2024
 | **Location**        | Part of the URL path        | After `?` in URL                 |
 | **Use**             | Identify resource            | Filter, sort, paginate           |
 | **Annotation**      | `@PathVariable`              | `@RequestParam`                 |
-| **Required**        | Always required              | Optional (can set `required=false`) |
+| **Required**        | Always required              | Optional (can set `required=false`)|
+
+---
+# Optional @RequestParam in Spring Boot
+
+In Spring Boot, you can make a `@RequestParam` optional by setting `required = false`. This allows the parameter to be excluded from the request without causing an error.
+
+## Basic Usage
+```java
+@GetMapping("/greet")
+public String greetUser(@RequestParam(required = false) String name) {
+    return name != null ? "Hello, " + name : "Hello, Guest!";
+}
+```
+
+## With Default Value
+You can also specify a `defaultValue` so you don't have to check for null manually:
+```java
+@GetMapping("/greet")
+public String greetUser(@RequestParam(required = false, defaultValue = "Guest") String name) {
+    return "Hello, " + name;
+}
+```
+
+## Example Calls
+- `/greet?name=Yogesh` → `"Hello, Yogesh"`
+- `/greet` → `"Hello, Guest"`
+
+Using `defaultValue` simplifies the logic and ensures consistent behavior even when the parameter is not provided.
 
 ---
