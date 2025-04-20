@@ -296,3 +296,32 @@ public class MyApplicationBean {
 | **Application** | One instance per web application | Until application stops |
 
 ---
+
+# 🌱 Difference Between Spring Boot and Spring MVC
+
+Spring Boot is built on top of the conventional Spring Framework, widely used to develop **REST APIs**.  
+Spring MVC is a **Model-View-Controller** based web framework, widely used to develop **web applications**.
+
+---
+
+## 🔍 Feature-wise Comparison
+
+| Feature | **Spring MVC** | **Spring Boot** |
+|--------|----------------|----------------|
+| **Setup** | Manual setup of dependencies, web.xml, dispatcher servlet, etc. | Auto-configuration with embedded server, minimal setup. |
+| **Configuration** | Lots of XML/Java configuration needed. | Convention over configuration — very minimal boilerplate. |
+| **Server** | Requires external server like Tomcat, Jetty, etc. | Comes with embedded server (Tomcat by default). |
+| **Dependency Management** | Developer manages all dependencies manually. | Uses Spring Boot Starter dependencies for quick setup. |
+| **Deployment** | Usually packaged as WAR file. | Packaged as standalone JAR — just run it! |
+| **Spring Initializr** | Not available. | Provides Spring Initializr to bootstrap apps quickly. |
+| **Actuator & Monitoring** | Needs manual setup. | Built-in with Spring Boot Actuator for metrics and health checks. |
+| **Use Case** | Best for large apps needing fine-grained control. | Ideal for microservices, quick prototypes, REST APIs. |
+
+---
+
+## ✨ In Simple Terms
+
+- **Spring MVC** is like assembling your own car from parts.
+- **Spring Boot** is like buying a ready-to-drive car with everything pre-installed.
+
+---
