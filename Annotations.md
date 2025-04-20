@@ -532,3 +532,79 @@ public class GlobalExceptionHandler {
 
 ---
 
+# @Valid Annotation in Spring Boot
+
+## 23.@Valid
+`@Valid` is used to trigger validation on an object (often a request body) before the controller processes it. It comes from the **javax.validation** (Jakarta) package and works with the **Bean Validation API** like Hibernate Validator.
+
+---
+
+## 🔍 How Does It Work?
+When you annotate a method parameter with `@Valid`, Spring Boot:
+- Automatically checks for constraint annotations (`@NotNull`, `@Size`, `@Email`, etc.) on the object.
+- Throws a `MethodArgumentNotValidException` if validation fails.
+
+---
+
+## 🧪 Controller Example
+```java
+@RestController
+@RequestMapping("/api/students")
+public class StudentController {
+
+    @PostMapping
+    public ResponseEntity<String> createStudent(@RequestBody @Valid Student student) {
+        return ResponseEntity.ok("Student created successfully!");
+    }
+}
+```
+
+---
+
+## 🧾 Student Entity Example
+```java
+public class Student {
+
+    @NotBlank(message = "Name is mandatory")
+    private String name;
+
+    @Min(value = 18, message = "Age must be at least 18")
+    private int age;
+
+    @Email(message = "Email should be valid")
+    private String email;
+
+    // Getters and Setters
+}
+```
+
+---
+
+## 🛡️ Handling Validation Errors Gracefully
+Use `@ControllerAdvice` + `@ExceptionHandler` to handle validation exceptions:
+
+```java
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        String errorMsg = ex.getBindingResult()
+                            .getFieldErrors()
+                            .stream()
+                            .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                            .collect(Collectors.joining(", "));
+        return ResponseEntity.badRequest().body(errorMsg);
+    }
+}
+```
+
+---
+
+## 📝 Summary
+- `@Valid` enables automatic request validation.
+- Works with constraint annotations inside Java classes.
+- Combine with `@ControllerAdvice` for custom error handling.
+
+---
+
