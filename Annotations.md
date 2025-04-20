@@ -586,3 +586,41 @@ public class Student {
 
 ---
 
+# Bean Validation: @NotNull vs @NotBlank
+
+## 24. @NotNull
+- Ensures that a field is **not null**.
+- Allows empty values like `""` (empty string).
+
+```java
+@NotNull
+private String name;
+```
+
+📌 **Fails if:** `name = null`
+✅ **Passes if:** `name = ""`
+
+## 25. @NotBlank
+- Ensures that a field is **not null, not empty, and not just whitespace**.
+- More strict than `@NotNull`.
+
+```java
+@NotBlank
+private String name;
+```
+
+📌 **Fails if:** `name = null`, `name = ""`, or `name = "   "`
+
+## Quick Comparison
+| Use Case | Annotation |
+|----------|------------|
+| Must not be `null` | `@NotNull` |
+| Must not be `null`, `""`, or whitespace | `@NotBlank` |
+| Must not be `null` or empty (for arrays/collections) | `@NotEmpty` |
+
+## Bonus: When to Use What
+- 🧪 Use `@NotNull` if you only want to avoid null references.
+- 🔒 Use `@NotBlank` when you require meaningful, non-whitespace input.
+- 📦 Use `@NotEmpty` for validating collections or strings that shouldn't be empty.
+
+---
