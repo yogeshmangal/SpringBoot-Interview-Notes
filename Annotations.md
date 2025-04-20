@@ -624,3 +624,80 @@ private String name;
 - 📦 Use `@NotEmpty` for validating collections or strings that shouldn't be empty.
 
 ---
+
+# @RequestMapping and Shortcut Annotations in Spring Boot
+
+## 26. @RequestMapping
+
+`@RequestMapping` is used to map HTTP requests to specific controller methods. It can be used at both class and method levels.
+
+### Example:
+```java
+@RestController
+@RequestMapping("/api")
+public class MyController {
+
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    public String sayHello() {
+        return "Hello, World!";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<String> createSomething(@RequestBody MyDto dto) {
+        return ResponseEntity.ok("Created");
+    }
+}
+```
+
+## Shortcut Annotations
+Spring Boot provides specific annotations as shortcuts for common HTTP methods:
+-(i)  PostMapping
+-(ii) PutMapping
+-(iii)DeleteMapping
+-(iv) GetMapping
+
+## 27. @PostMapping
+Maps HTTP POST requests to a method.
+```java
+@PostMapping("/create")
+public ResponseEntity<String> createSomething(@RequestBody MyDto dto) {
+    return ResponseEntity.ok("Created");
+}
+```
+
+## 28. @PutMapping
+Maps HTTP PUT requests to a method.
+```java
+@PutMapping("/update")
+public ResponseEntity<String> updateSomething(@RequestBody MyDto dto) {
+    return ResponseEntity.ok("Updated");
+}
+```
+
+## 29. @DeleteMapping
+Maps HTTP DELETE requests to a method.
+```java
+@DeleteMapping("/delete/{id}")
+public ResponseEntity<String> deleteSomething(@PathVariable int id) {
+    return ResponseEntity.ok("Deleted");
+}
+```
+
+## 30. @GetMapping
+Maps HTTP GET requests to a method.
+```java
+@GetMapping("/something")
+public ResponseEntity<String> getSomething() {
+    return ResponseEntity.ok("Hey");
+}
+```
+
+## One-line Definitions
+- `@PostMapping` → Maps HTTP POST requests to handler methods.
+- `@PutMapping` → Maps HTTP PUT requests to handler methods.
+- `@DeleteMapping` → Maps HTTP DELETE requests to handler methods.
+- `@GetMapping` → Maps HTTP GET requests to handler methods.
+
+These annotations improve code readability and are preferred over `@RequestMapping` when handling specific HTTP methods.
+
+---
