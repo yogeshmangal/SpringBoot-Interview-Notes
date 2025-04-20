@@ -226,7 +226,7 @@ public class MyBean {
 Bean is initialized!
 ```
 
-## 9. @PreDestroy Cleanup Method)  
+## 9. @PreDestroy (Cleanup Method)  
 - Runs **just before the bean is destroyed**.  
 - Used to release resources, close connections, etc.  
 - It is **not invoked for prototype beans**, as Spring doesn’t manage their lifecycle fully.  
