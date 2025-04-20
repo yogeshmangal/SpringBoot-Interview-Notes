@@ -364,9 +364,9 @@ private String firstName;
 
 ---
 
-# Path Parameter vs Query Parameter in Spring Boot
+# Path Parameter(@PathVariable) vs Query Parameter(@RequestParam) in Spring Boot
 
-## 18. Path Parameter
+## 18. @PathVariable
 Path parameters are part of the **URL path** and are used to identify a specific resource.
 
 ### ✅ Use Case:
@@ -388,7 +388,7 @@ In this case, `10` is the path parameter.
 
 ---
 
-## 19. Query Parameter
+## 19. @RequestParam
 Query parameters are passed **after the `?` in the URL** and are usually used for filtering, sorting, or pagination.
 
 ### ✅ Use Case:
@@ -467,3 +467,68 @@ public String greetUser(@RequestParam(required = false, defaultValue = "Guest") 
 Using `defaultValue` simplifies the logic and ensures consistent behavior even when the parameter is not provided.
 
 ---
+
+# Exception Handling in Spring Boot
+
+## 21. @ExceptionHandler
+
+`@ExceptionHandler` is used to handle exceptions at the **controller level**.
+
+### Example:
+```java
+@RestController
+public class StudentController {
+
+    @GetMapping("/student/{id}")
+    public Student getStudent(@PathVariable int id) {
+        if (id < 1) {
+            throw new IllegalArgumentException("Invalid ID");
+        }
+        return new Student();
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleInvalidId(IllegalArgumentException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+}
+```
+
+📌 Handles the `IllegalArgumentException` only within this controller.
+
+---
+
+## 22. @ControllerAdvice
+
+`@ControllerAdvice` is used to define **global exception handlers** that work across all controllers.
+
+### Example:
+```java
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException ex) {
+        return new ResponseEntity<>("Global Handler: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleGeneralException(Exception ex) {
+        return new ResponseEntity<>("Something went wrong: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+```
+
+📌 Catches exceptions thrown from any controller in the app.
+
+---
+
+## When to Use
+
+| Scenario                                           | Use                    |
+|----------------------------------------------------|-------------------------|
+| Handle exceptions within a specific controller     | `@ExceptionHandler`     |
+| Handle exceptions globally across all controllers  | `@ControllerAdvice`     |
+
+---
+
