@@ -206,7 +206,7 @@ class Application {
 
 In Spring, `@PostConstruct` and `@PreDestroy` annotations are used for lifecycle callback methods, allowing developers to define custom initialization and cleanup logic for beans.  
 
-## 8. @PostConstruct(Initialization Method)  
+## 8. @PostConstruct (Initialization Method)  
 - Runs **after the bean is created and dependencies are injected**.  
 - Used to perform setup operations (e.g., initializing resources).  
 - It is invoked **only once**, after dependency injection.  
@@ -534,7 +534,7 @@ public class GlobalExceptionHandler {
 
 # @Valid Annotation in Spring Boot
 
-## 23.@Valid
+## 23. @Valid
 `@Valid` is used to trigger validation on an object (often a request body) before the controller processes it. It comes from the **javax.validation** (Jakarta) package and works with the **Bean Validation API** like Hibernate Validator.
 
 ---
@@ -580,31 +580,9 @@ public class Student {
 
 ---
 
-## 🛡️ Handling Validation Errors Gracefully
-Use `@ControllerAdvice` + `@ExceptionHandler` to handle validation exceptions:
-
-```java
-@ControllerAdvice
-public class GlobalExceptionHandler {
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        String errorMsg = ex.getBindingResult()
-                            .getFieldErrors()
-                            .stream()
-                            .map(error -> error.getField() + ": " + error.getDefaultMessage())
-                            .collect(Collectors.joining(", "));
-        return ResponseEntity.badRequest().body(errorMsg);
-    }
-}
-```
-
----
-
 ## 📝 Summary
 - `@Valid` enables automatic request validation.
 - Works with constraint annotations inside Java classes.
-- Combine with `@ControllerAdvice` for custom error handling.
 
 ---
 
