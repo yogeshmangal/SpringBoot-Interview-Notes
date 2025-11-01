@@ -133,7 +133,7 @@ Lightweight, in-memory database for testing and rapid development.
 
 ---
 
-### Note:   
+## 8. Note:   
 Whenever we **add or remove dependencies**, **change the project structure**, or **set up a new Spring Boot project**, it’s recommended to do a **clean build** to avoid conflicts or stale artifacts.
 
 #### Commands
