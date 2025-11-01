@@ -17,6 +17,8 @@ The `spring-boot-starter-web` dependency is used to build web applications, incl
 **In short:**  
 This dependency provides all essential components to create a web application in Spring Boot with minimal configuration.
 
+---
+
 ## 2. spring-boot-starter-security
 The `spring-boot-starter-security` dependency is used to add authentication and authorization features to a Spring Boot application.  
 
@@ -38,6 +40,7 @@ The `spring-boot-starter-security` dependency is used to add authentication and 
   spring.security.user.password: test@4321
   ```
 
+---
 
 ## 3. spring-boot-devtools
 The `spring-boot-devtools` dependency enhances the development experience by providing features like automatic restart, live reload, and disabling template caching.  
@@ -53,6 +56,7 @@ The `spring-boot-devtools` dependency enhances the development experience by pro
 - It is **disabled in production** (automatically turned off in packaged JAR/WAR files).  
 - Works best in **IDE development mode** for fast iteration cycles.  
 
+---
 
 ## 4. spring-boot-starter-actuator 
 
@@ -90,6 +94,8 @@ The `spring-boot-starter-actuator` dependency provides production-ready features
   ```  
   This ensures that all endpoints, including `/info`, are fully accessible.
 
+---
+
 ## 5. spring-boot-starter-data-jpa
 Provides all the necessary components to use Spring Data JPA with Hibernate as the default ORM provider.
 **Includes:**  
@@ -101,8 +107,12 @@ Provides all the necessary components to use Spring Data JPA with Hibernate as t
 **Use Case:**  
 Use this to interact with relational databases using JPA and repositories.
 
+---
+
 ## 6. postgresql
 JDBC driver for PostgreSQL. Required to connect your Spring Boot app to a PostgreSQL database.
+
+---
 
 ## 7. h2
 Lightweight, in-memory database for testing and rapid development.
@@ -120,3 +130,20 @@ Lightweight, in-memory database for testing and rapid development.
 - Small-scale internal demos
 - Running integration tests
 📉 But since everything is stored in memory, the data vanishes as soon as the app stops (unless you use file-based mode).
+
+---
+
+### Note:   
+Whenever we **add or remove dependencies**, **change the project structure**, or **set up a new Spring Boot project**, it’s recommended to do a **clean build** to avoid conflicts or stale artifacts.
+
+#### Commands
+- **If using Maven:**
+```bash
+mvn clean install
+```
+- **If using Gradle:**
+```bash
+./gradlew clean build
+```
+---
+
